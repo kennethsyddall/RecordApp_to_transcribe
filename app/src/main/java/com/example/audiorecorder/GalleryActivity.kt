@@ -38,13 +38,14 @@ class GalleryActivity : AppCompatActivity() {
             layoutManager = LinearLayoutManager(context)
 
         }
+        fetchAll()
     }
 
 
     private fun fetchAll(){
         GlobalScope.launch {
             records.clear()
-            var queryResult = db.audioRecordDao().getAll()
+            val queryResult = db.audioRecordDao().getAll()
             records.addAll(queryResult)
 
             mAdapter.notifyDataSetChanged()

@@ -89,6 +89,7 @@ class MainActivity : AppCompatActivity(), Timer.OnTimerTickListener {
             stopRecording()
             // TODO
             Toast.makeText(this,"Record Saved", Toast.LENGTH_SHORT).show()
+            save()
         }
 
         binding.btnDelete.setOnClickListener {
@@ -105,7 +106,7 @@ class MainActivity : AppCompatActivity(), Timer.OnTimerTickListener {
         val dateTimeNow = LocalDateTime.now()
         val formatter = DateTimeFormatter.ofPattern("yyyyMMddHHmmss")
         val formatted = dateTimeNow.format(formatter)
-        val newFilename: String = formatted.toString()
+        val newFilename: String = "audio_record_$formatted"
 
         if(newFilename != filename){
             var newFile = File("$dirPath$newFilename.mp3")
@@ -209,6 +210,7 @@ class MainActivity : AppCompatActivity(), Timer.OnTimerTickListener {
 
         binding.btnDelete.isClickable = false
         binding.btnDelete.setImageResource(R.drawable.ic_delete_disabled)
+        binding.btnRecord.setImageResource(R.drawable.ic_record)
 
         binding.tvTimer.text = "00:00.00"
     }
