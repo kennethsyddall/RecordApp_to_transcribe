@@ -1,38 +1,49 @@
 package com.example.audiorecorder
 
+import android.annotation.SuppressLint
+import android.content.ClipData
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.media.MediaRecorder
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.VibrationEffect
 import android.os.Vibrator
 import android.view.View
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.core.app.ShareCompat
+import androidx.core.content.FileProvider
 import androidx.room.Room
 import com.example.audiorecorder.databinding.ActivityMainBinding
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import java.io.File
-import java.io.FileOutputStream
 import java.io.IOException
-import java.sql.Time
 import java.text.SimpleDateFormat
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
-import java.util.jar.Manifest
+
+/**
+ * This version saves the recorded audio but does not allow listening or sharing
+ * ToDo:
+ * Be able to play back the recorded audios
+ * Editor: cut out parts
+ * Share them via email or social media
+ * Automatic sharing to a set email address
+ */
+
 
 const val REQUEST_CODE = 200
 class MainActivity : AppCompatActivity(), Timer.OnTimerTickListener {
 
     private lateinit var binding: ActivityMainBinding
 
-    private var permission = arrayOf(android.Manifest.permission.RECORD_AUDIO)
+    private var permission = arrayOf(android.Manifest.permission.RECORD_AUDIO, android.Manifest.permission.WRITE_EXTERNAL_STORAGE )
     private var permissionGranted = false
 
     private var recorder: MediaRecorder? = null
@@ -49,6 +60,8 @@ class MainActivity : AppCompatActivity(), Timer.OnTimerTickListener {
 
     private lateinit var db: AppDatabase
 
+    private val authorities = "com.restart.AudioRecorder.fileProvider"
+
     @RequiresApi(Build.VERSION_CODES.S)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,7 +72,7 @@ class MainActivity : AppCompatActivity(), Timer.OnTimerTickListener {
 
         if (!permissionGranted) {
             ActivityCompat.requestPermissions(this, permission, REQUEST_CODE)
-        }
+       }
 
         db = Room.databaseBuilder(
             this,
@@ -90,6 +103,7 @@ class MainActivity : AppCompatActivity(), Timer.OnTimerTickListener {
             // TODO
             Toast.makeText(this,"Record Saved", Toast.LENGTH_SHORT).show()
             save()
+            // Share
         }
 
         binding.btnDelete.setOnClickListener {
@@ -101,12 +115,14 @@ class MainActivity : AppCompatActivity(), Timer.OnTimerTickListener {
         binding.btnDelete.isClickable = false
     }
 
+
+    @SuppressLint("QueryPermissionsNeeded")
     @RequiresApi(Build.VERSION_CODES.O)
     private fun save(){
         val dateTimeNow = LocalDateTime.now()
         val formatter = DateTimeFormatter.ofPattern("yyyyMMddHHmmss")
         val formatted = dateTimeNow.format(formatter)
-        val newFilename: String = "audio_record_$formatted"
+        val newFilename = "audio_record_$formatted"
 
         if(newFilename != filename){
             var newFile = File("$dirPath$newFilename.mp3")
@@ -122,6 +138,28 @@ class MainActivity : AppCompatActivity(), Timer.OnTimerTickListener {
             db.audioRecordDao().insert(record)
         }
 
+        /** Share test
+         * Not working
+         * this must be in the Share function
+         * */
+
+        /*
+        val fileLocation = File(this.filesDir, filePath)
+        val path = FileProvider.getUriForFile(this, authorities, fileLocation)
+
+        ShareCompat.IntentBuilder(this).apply {
+            setChooserTitle("share...")
+            setText("Share text")
+            setStream(path)
+            setType("audio/mp3")
+        }.startChooser()
+
+         */
+
+    }
+
+    fun share(){
+        //Share the recorded audio
     }
 
     override fun onRequestPermissionsResult(
