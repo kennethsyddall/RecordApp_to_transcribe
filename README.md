@@ -10,7 +10,7 @@ Project information
 
 The android app lets you:
 - Record audio and storing it
-- List view of recording
+- View the recording list
 
 <h2>To Do</h2>
 
