@@ -1,5 +1,4 @@
 # Record App to transcribe
-===========================================
 
 Install Android Studio to use the App
 
@@ -7,7 +6,11 @@ Install Android Studio to use the App
 
 Project information
 
-<h2>Done</h2>
+<h2>Features</h2>
+
+The android app lets you:
+- Record audio and storing it
+- List view of recording
 
 <h2>To Do</h2>
 
@@ -21,3 +24,6 @@ Project information
 <img src="screenshots/main.jpeg" height="400" alt="Screenshot"/> 
 
 
+<h2>Contributing</h2>
+
+Info
