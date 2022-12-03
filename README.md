@@ -21,10 +21,6 @@ The android app lets you:
 
 <h2>Screenshots</h2>
 
-<img src="screenshots/main.jpeg" height="400" alt="Screenshot"/> 
-
-<img src="screenshots/list.jpeg" height="400" alt="Screenshot2"/> 
-
 <img src="screenshots/main.jpeg" align="left" width="200" hspace="10" vspace="10">
     
 <img src="screenshots/list.jpeg" align="center" width="200" hspace="10" vspace="10">
