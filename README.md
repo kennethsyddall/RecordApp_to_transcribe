@@ -23,6 +23,8 @@ The android app lets you:
 
 <img src="screenshots/main.jpeg" height="400" alt="Screenshot"/> 
 
+<img src="screenshots/list.jpeg" height="400" alt="Screenshot2"/> 
+
 
 <h2>Contributing</h2>
 
