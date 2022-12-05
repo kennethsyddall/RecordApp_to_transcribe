@@ -32,5 +32,5 @@ The android app lets you:
 
 Feel free to fork this and rewrite all you need to! Other potential projects that could contribute are:
  - An iPhone app
- - A discord bot like [Craig](https://craig.chat/) that's a little more streamlined in that after it finishes recording it automatically sends the file without more need from the use
+ - A discord bot like [Craig](https://craig.chat/) that's a little more streamlined in that after it finishes recording it automatically sends the file without more need from the user
  - Something similar for zoom + meet + teams
