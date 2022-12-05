@@ -4,7 +4,8 @@ Install Android Studio to use the App
 
 <h2>About</h2>
 
-Project information
+This app came from the goal of getting people involved in AI safety to record their rough everyday conversations, so that eventually we can train a LLM, and get it to produce AI safety research ideas. We are optimizing mostly for low friction so that these busy people actually use it.
+
 
 <h2>Features</h2>
 
@@ -18,6 +19,7 @@ The android app lets you:
 1. Editor: cut out parts
 1. Share them via email or social media
 1. Automatic sharing to a set email address
+1. Saying "stop recording please" stops the recording
 
 <h2>Screenshots</h2>
 
@@ -28,4 +30,7 @@ The android app lets you:
 
 <h2>Contributing</h2>
 
-Info
+Feel free to fork this and rewrite all you need to! Other potential projects that could contribute are:
+ - An iPhone app
+ - A discord bot like [Craig](https://craig.chat/) that's a little more streamlined in that after it finishes recording it automatically sends the file without more need from the use
+ - Something similar for zoom + meet + teams
